@@ -4,6 +4,8 @@ Generates tokens in models and authentication in the controllers.
 
 #### Status
 
+[![Build Status](https://travis-ci.org/armando1339/model_token_auth.svg?branch=develop)](https://travis-ci.org/armando1339/model_token_auth)
+
 ## Usage
 
 This plugin handles Token API authentication for models. In the model in which
