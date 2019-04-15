@@ -177,6 +177,7 @@ DEPENDENCIES
   coveralls
   model_token_auth!
   pg
+  rake
   rspec-rails
   shoulda-callback-matchers
   shoulda-matchers
