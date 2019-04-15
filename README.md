@@ -2,8 +2,6 @@
 
 Generates tokens in models and authentication in the controllers.
 
-#### Status
-
 [![Build Status](https://travis-ci.org/armando1339/model_token_auth.svg?branch=develop)](https://travis-ci.org/armando1339/model_token_auth) [![Coverage Status](https://coveralls.io/repos/github/armando1339/model_token_auth/badge.svg?branch=develop)](https://coveralls.io/github/armando1339/model_token_auth?branch=develop)
 
 ## Usage
