@@ -33,6 +33,7 @@ and then in controllers:
 
 ```ruby
 # open a scope for centers
+
 module Centers
   class DummiesController < ApplicationController
     before_action :authenticate!
@@ -59,6 +60,7 @@ Make models authenticatables.
 
 ```ruby
 # example
+
 class Center < ActiveRecord::Base
   acts_as_model_authenticable
 end
