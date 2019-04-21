@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    model_token_auth (0.1.0)
+    model_token_auth (1.0.0)
       rails (~> 5.2.2)
 
 GEM
