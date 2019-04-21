@@ -8,3 +8,4 @@ spec/dummy/storage/
 spec/dummy/tmp/
 # spec/dummy/config/database.yml
 spec/dummy/config/secrets.yml
+.DS_Store

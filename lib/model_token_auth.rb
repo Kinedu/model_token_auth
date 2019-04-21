@@ -9,7 +9,9 @@ class AccessToken < ActiveRecord::Base
   include ModelTokenAuth::AccessTokensConfig
 end
 
-ActiveRecord::Base.include(ModelTokenAuth::ActsAsModelAuthenticable)
+ActiveRecord::Base.include(
+  ModelTokenAuth::ActsAsModelAuthenticable
+)
 
 ActionController::Base.include(
   ModelTokenAuth::ActsAsControllersAuthenticable
