@@ -93,7 +93,7 @@ end
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'model_token_auth', '~> 1.0.0'
+gem 'model_token_auth'
 ```
 
 And then execute:

@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
   spec.version     = ModelTokenAuth::VERSION
   spec.authors     = ["Armando Alejandre"]
   spec.email       = ["armando1339@gmail.com"]
+  spec.homepage    = "https://github.com/armando1339/model_token_auth"
   spec.summary     = "Generates tokens in models and authentication in the controllers."
   spec.description = "Generates tokens in models and authentication in the controllers."
   spec.license     = "MIT"
