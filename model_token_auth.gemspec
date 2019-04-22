@@ -9,9 +9,8 @@ Gem::Specification.new do |spec|
   spec.version     = ModelTokenAuth::VERSION
   spec.authors     = ["Armando Alejandre"]
   spec.email       = ["armando1339@gmail.com"]
-  spec.homepage    = ""
-  spec.summary     = "Summary of ModelTokenAuth."
-  spec.description = "Description of ModelTokenAuth."
+  spec.summary     = "Generates tokens in models and authentication in the controllers."
+  spec.description = "Generates tokens in models and authentication in the controllers."
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
