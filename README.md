@@ -1,22 +1,28 @@
 # ModelTokenAuth
 
-Model authenticator; Generates a token in the models and authenticates them in the controllers.
+Generates tokens in models and authentication in the controllers.
 
-#### Status
+[![Build Status](https://travis-ci.org/armando1339/model_token_auth.svg?branch=develop)](https://travis-ci.org/armando1339/model_token_auth) [![Coverage Status](https://coveralls.io/repos/github/armando1339/model_token_auth/badge.svg?branch=develop)](https://coveralls.io/github/armando1339/model_token_auth?branch=develop)
 
 ## Usage
 
-This gem handles Token API authentication for models. Generate a token in the models in which
-`acts_as_model_authenticable` method callback is called by calling the methods #save, #create and #create!
-of ActiveRecord. It also handles authentication in the controllers by inserting a generic #authenticate!
-method that will verify the existence of the token and creates the `current_*` method.
+This plugin handles Token API authentication for models. In models in which
+`#acts_as_model_authenticable` method is called, the instances will be able generating
+a token by calling the methods `#save`, `#create` and `#create!`of ActiveRecord. The
+token is generated in an associated model called AccessToken.
+
+The plugin also handles authentication in the controllers by inserting a generic
+`#authenticate!` method in ActionController::Base or ActionController::API that
+will verify the existence of the token and creates the `current_*` method by adding
+a header `X-Auth-Token` in the request with a token as a value.
 
 ### Models
 
-Make models token authenticatable.
+Make models authenticatables.
 
 ```ruby
 # example
+
 class Center < ActiveRecord::Base
   acts_as_model_authenticable
 end
@@ -51,23 +57,33 @@ class ApplicationController < ActionController::Base
   acts_as_controller_authenticable
 end
 
-# for API only (ActionController::API)
+# for API only
 
 class ApplicationController < ActionController::API
   acts_as_controller_authenticable
 end
 ```
 
-Then in controllers
+Then.
 
 ```ruby
 # open a scope for centers
-class Centers::DummiesController < ApplicationController
-  before_action :authenticate!
 
-  # using current_* generated
-  def index
-    current_center
+module Centers
+  class DummiesController < ApplicationController
+    before_action :authenticate!
+
+    # using current_* generated
+    def show
+      @current = current_center
+    end
+
+    # another example
+    def index
+      @dummies = current_center.dummies
+    end
+
+    ...
   end
 end
 ```
@@ -77,7 +93,7 @@ end
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'model_token_auth'
+gem 'model_token_auth', '~> 1.0.0'
 ```
 
 And then execute:
@@ -86,11 +102,19 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
+## Contributing
 
-```bash
-$ gem install model_token_auth
-```
+Bug report or pull request are welcome.
+
+Make a pull request:
+
+- Fork it
+- Create your feature branch (git checkout -b my-new-feature)
+- Commit your changes (git commit -am 'Add some feature')
+- Push to the branch (git push origin HEAD)
+- Create new Pull Request
+
+Please write tests if necessary.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
