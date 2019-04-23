@@ -15,7 +15,7 @@ The plugin also handles authentication in the controllers by inserting a generic
 `#authenticate!` method in ActionController::Base or ActionController::API that
 will verify the existence of the token and creates the `current_*` method.
 
-To authenticate some token it'll need adding to headers X-Auth-Token in the request with a token as a value.
+To authenticate some token it'll need adding the header `X-Auth-Token` in the request with a token as a value.
 
 ### Models
 
