@@ -4,38 +4,6 @@ Generates tokens in models and authentication in the controllers.
 
 [![Build Status](https://travis-ci.org/armando1339/model_token_auth.svg?branch=develop)](https://travis-ci.org/armando1339/model_token_auth) [![Coverage Status](https://coveralls.io/repos/github/armando1339/model_token_auth/badge.svg?branch=develop)](https://coveralls.io/github/armando1339/model_token_auth?branch=develop)
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'model_token_auth'
-```
-
-Then execute:
-
-```bash
-$ bundle
-```
-
-Then, in your project directory:
-
-```bash
-$ rails generate access_token
-```
-
-this will generate a migration, then:
-
-```bash
-$ rake db:migrate
-
-# or
-
-$ rails db:migrate
-```
-
-Once the migration finishes, the models will be ready to be authenticated.
-
 ## Usage
 
 This plugin handles Token authentication for models. In models in which
@@ -121,6 +89,34 @@ module Centers
   end
 end
 ```
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'model_token_auth'
+```
+
+Then execute:
+
+```bash
+$ bundle
+```
+
+In your project directory:
+
+```bash
+$ rails generate access_token
+```
+
+This will generate a migration, then:
+
+```bash
+$ rake db:migrate
+```
+
+Once the migration finishes, the models will be ready to be authenticated.
 
 ## Contributing
 
