@@ -6,15 +6,16 @@ Generates tokens in models and authentication in the controllers.
 
 ## Usage
 
-This plugin handles Token API authentication for models. In models in which
+This plugin handles Token authentication for models. In models in which
 `#acts_as_model_authenticable` method is called, the instances will be able generating
 a token by calling the methods `#save`, `#create` and `#create!`of ActiveRecord. The
 token is generated in an associated model called AccessToken.
 
 The plugin also handles authentication in the controllers by inserting a generic
 `#authenticate!` method in ActionController::Base or ActionController::API that
-will verify the existence of the token and creates the `current_*` method by adding
-a header `X-Auth-Token` in the request with a token as a value.
+will verify the existence of the token and creates the `current_*` method.
+
+To authenticate some token it'll need adding the header `X-Auth-Token` in the request with a token as a value.
 
 ### Models
 
@@ -96,11 +97,25 @@ Add this line to your application's Gemfile:
 gem 'model_token_auth'
 ```
 
-And then execute:
+Then execute:
 
 ```bash
 $ bundle
 ```
+
+In your project directory:
+
+```bash
+$ rails generate access_token
+```
+
+This will generate a migration, then:
+
+```bash
+$ rake db:migrate
+```
+
+Once the migration finishes, the models will be ready to be authenticated.
 
 ## Contributing
 
