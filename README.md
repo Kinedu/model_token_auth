@@ -4,17 +4,51 @@ Generates tokens in models and authentication in the controllers.
 
 [![Build Status](https://travis-ci.org/armando1339/model_token_auth.svg?branch=develop)](https://travis-ci.org/armando1339/model_token_auth) [![Coverage Status](https://coveralls.io/repos/github/armando1339/model_token_auth/badge.svg?branch=develop)](https://coveralls.io/github/armando1339/model_token_auth?branch=develop)
 
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'model_token_auth'
+```
+
+Then execute:
+
+```bash
+$ bundle
+```
+
+Then, in your project directory:
+
+```bash
+$ rails generate access_token
+```
+
+this will generate a migration, then:
+
+```bash
+$ rake db:migrate
+
+# or
+
+$ rails db:migrate
+```
+
+Once the migration finishes, the models will be ready to be authenticated.
+
 ## Usage
 
-This plugin handles Token API authentication for models. In models in which
+This plugin handles Token authentication for models. In models in which
 `#acts_as_model_authenticable` method is called, the instances will be able generating
 a token by calling the methods `#save`, `#create` and `#create!`of ActiveRecord. The
 token is generated in an associated model called AccessToken.
 
 The plugin also handles authentication in the controllers by inserting a generic
 `#authenticate!` method in ActionController::Base or ActionController::API that
-will verify the existence of the token and creates the `current_*` method by adding
-a header `X-Auth-Token` in the request with a token as a value.
+will verify the existence of the token and creates the `current_*` method.
+
+To authenticate some token it will need adding to header `X-Auth-Token` in
+the request with a token as a value.
 
 ### Models
 
@@ -86,20 +120,6 @@ module Centers
     ...
   end
 end
-```
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'model_token_auth'
-```
-
-And then execute:
-
-```bash
-$ bundle
 ```
 
 ## Contributing
