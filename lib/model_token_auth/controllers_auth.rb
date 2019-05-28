@@ -4,7 +4,7 @@ module ModelTokenAuth
       token = request.headers['HTTP_X_AUTH_TOKEN']
 
       if token.present?
-        token_ = AccessToken.find_by_token(token)
+        token_ = AccessToken.find_by_token(token.split.last)
 
         if token_&.entity_type?
           authenticate_entity(token_)
