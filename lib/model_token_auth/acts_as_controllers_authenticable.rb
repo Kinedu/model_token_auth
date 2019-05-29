@@ -6,7 +6,7 @@ module ModelTokenAuth
 
     class_methods do
       def acts_as_controller_authenticable
-        include ModelTokenAuth::ControllersAuth
+        superclass.include ModelTokenAuth::ControllersAuth
       end
     end
   end
