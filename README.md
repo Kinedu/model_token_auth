@@ -36,14 +36,15 @@ Once the migration finishes, the models will be ready to be authenticated.
 
 This plugin handles Token authentication for models. In models in which
 `#acts_as_model_authenticable` method is called, the instances will be able generating
-a token by calling the methods `#save`, `#create` and `#create!`of ActiveRecord. The
-token is generated in an associated model called AccessToken.
+a token by calling the methods `#save`, `#create` and `#create!`of `ActiveRecord::Base`.
+The token is generated in an associated model called `AccessToken`.
 
 The plugin also handles authentication in the controllers by inserting a generic
-`#authenticate!` method in ActionController::Base or ActionController::API that
-will verify the existence of the token and creates the `current_*` method.
+`#authenticate!` calling the method `acts_as_controller_authenticable` in
+ApplicationController. This method will verify the existence of the token and
+creates the `current_*` method.
 
-To authenticate some token it'll need adding the standard header `Authorization` in the request
+To authenticate some token the request will need the standard header `Authorization`
 with a token as a value.
 
 ### Models
@@ -51,8 +52,6 @@ with a token as a value.
 Make models authenticatables.
 
 ```ruby
-# example
-
 class Center < ActiveRecord::Base
   acts_as_model_authenticable
 end
@@ -78,11 +77,9 @@ center.access_token
 
 ### Controllers
 
-Allow controllers to handle token authentication
+Allow controllers to handle token authentication.
 
 ```ruby
-# example ActionController::Base
-
 class ApplicationController < ActionController::Base
   acts_as_controller_authenticable
 end
@@ -122,14 +119,14 @@ end
 
 To facilitate the testing of the controllers:
 
-1.- Add a new folder with the name of ```support``` in the root of ```spec```.
+1.- Add a new folder with the name of `support` in the root of `spec`.
 
-2.- Create a ruby file with the name of model_token_auth_helper (```model_token_auth_helper.rb```).
+2.- Create a ruby file with the name of model_token_auth_helper (`model_token_auth_helper.rb`).
 
 3.- Copy the following code:
 
 ```ruby
-# => model_token_auth_helper.rb
+# model_token_auth_helper.rb
 
 module ModelTokenAuthHelper
 
@@ -145,18 +142,17 @@ module ModelTokenAuthHelper
   # value of the token that is passed to it,
   # giving it the necessary format.
   #
-  def add_authorization_header(token)
-    request.env['HTTP_AUTHORIZATION'] =
-      ActionController::HttpAuthentication::Token.encode_credentials(token)
+  def add_authorization_header(access_token)
+    subject.request.env['HTTP_AUTHORIZATION'] =
+      ActionController::HttpAuthentication::Token.encode_credentials(access_token.token)
   end
 end
 ```
 
-4.- Require ModelTokenAuthHelper at top of the file ```spec_helper.rb``` and add the module to 
-the RSpec configuration:
+4.- Require `ModelTokenAuthHelper` at the top of the file `spec_helper.rb` and add the module to the RSpec configuration:
 
 ```ruby
-# => spec_helper.rb
+# spec_helper.rb
 
 require_relative 'support/model_token_auth_helper'
 
@@ -170,7 +166,7 @@ end
 
 ### ModelTokenAuthHelper Usage
 
-Here is described how to use the methods of the ModelTokenAuthHelper module that we created
+Here is described how to use the methods of the ModelTokenAuthHelper module that we created.
 
 ```ruby
 require 'rails_helper'
@@ -222,11 +218,11 @@ Bug report or pull request are welcome.
 
 Make a pull request:
 
-- Fork it
-- Create your feature branch (git checkout -b my-new-feature)
-- Commit your changes (git commit -am 'Add some feature')
-- Push to the branch (git push origin HEAD)
-- Create new Pull Request
+- Clone the repo
+- Create your feature branch
+- Commit your changes
+- Push the branch
+- Create new Pull-Request
 
 Please write tests if necessary.
 

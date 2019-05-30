@@ -10,7 +10,7 @@ RSpec.describe DummiesController do
 
     context '#authenticate!' do
       before do
-        add_authorization_header!(dummy.access_token.token)
+        add_authorization_header(dummy.access_token)
 
         get :index, format: :json
       end
