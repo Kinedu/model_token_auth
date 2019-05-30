@@ -40,7 +40,7 @@ a token by calling the methods `#save`, `#create` and `#create!`of `ActiveRecord
 The token is generated in an associated model called `AccessToken`.
 
 The plugin also handles authentication in the controllers by inserting a generic
-`#authenticate!` calling the method `acts_as_controller_authenticable` in
+`#authenticate!` method when calling the callback `acts_as_controller_authenticable` in
 ApplicationController. This method will verify the existence of the token and
 creates the `current_*` method.
 
