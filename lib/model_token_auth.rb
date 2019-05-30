@@ -1,7 +1,7 @@
 require "model_token_auth/railtie"
 require 'model_token_auth/access_tokens_config'
 require 'model_token_auth/acts_as_model_authenticable'
-require 'model_token_auth/acts_as_controllers_authenticable'
+require 'model_token_auth/acts_as_controller_authenticable'
 
 # => Class associated with the models
 # that will be authenticated.
@@ -15,9 +15,7 @@ class AccessToken < ActiveRecord::Base
 end
 
 # => *
-ActiveRecord::Base.include ModelTokenAuth::ActsAsModelAuthenticable
+include ModelTokenAuth::ActsAsControllerAuthenticable
 
 # => *
-[ActionController::Base, ActionController::API].each do |resource|
-  resource.include ModelTokenAuth::ActsAsControllersAuthenticable
-end
+ActiveRecord::Base.include ModelTokenAuth::ActsAsModelAuthenticable
