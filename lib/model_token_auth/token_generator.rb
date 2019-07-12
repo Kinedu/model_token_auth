@@ -3,12 +3,11 @@ module ModelTokenAuth
     extend ActiveSupport::Concern
 
     included do
-      
       # => callbacks
       before_validation :build_access_token, on: :create
 
       # => associations
-      has_one :access_token, as: :entity
+      has_one :access_token, as: :entity, dependent: :destroy
 
       # => validations
       validates_associated :access_token

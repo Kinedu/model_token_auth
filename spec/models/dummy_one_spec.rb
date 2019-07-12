@@ -17,7 +17,7 @@ RSpec.describe DummyOne, type: :model do
   end
 
   context 'associations' do
-    it { should have_one(:access_token) }
+    it { should have_one(:access_token).dependent(:destroy) }
   end
 
 
