@@ -3,7 +3,6 @@ module ModelTokenAuth
     extend ActiveSupport::Concern
 
     included do
-      
       # => callbacks
       after_initialize :assign_token, if: :new_record?
 

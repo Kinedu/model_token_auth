@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    model_token_auth (1.1.2)
+    model_token_auth (1.1.3)
       rails (~> 5.2.2)
 
 GEM
@@ -170,9 +170,9 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    websocket-driver (0.7.0)
+    websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.3)
+    websocket-extensions (0.1.4)
 
 PLATFORMS
   ruby
